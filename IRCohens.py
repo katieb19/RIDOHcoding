@@ -125,6 +125,22 @@ for i in range(0, len(Katie_sorted_ids)):
 
 
 #Q1 cohen's kappa RI
+print("Length of overlap")
+print(len(KatieYN_q1))
+print("")
+
+yes_count_q1 = 0
+
+for i in KatieYN_q1:
+    if i == "yes":
+        yes_count_q1 += 1
+
+
+print("yes proportion question 1")
+print(yes_count_q1/len(KatieYN_q1))
+print("")
+
+
 q1IR = cohen_kappa_score(KatieYN_q1, MuskaanYN_q1)
 print("kappa for q1")
 print(q1IR)
@@ -222,6 +238,22 @@ for i in range(0, len(Muskaan_final_ids)):
 
 
 #Q2 cohen's kappa RI
+print("")
+print("Length of overlap")
+print(len(KatieYN_q2))
+print("")
+
+yes_count_q2 = 0
+
+for i in KatieYN_q2:
+    if i == "yes":
+        yes_count_q2 += 1
+
+
+print("yes proportion question 2")
+print(yes_count_q2/len(KatieYN_q2))
+
+
 q2IR = cohen_kappa_score(KatieYN_q2, MuskaanYN_q2)
 print("kappa for q2")
 print(q2IR)
@@ -318,6 +350,22 @@ for i in range(0, len(Muskaan_final_ids_3)):
 
 
 #Q3 cohen's kappa RI
+print("Length of overlap")
+print(len(KatieYN_q3))
+print("")
+
+yes_count_q3 = 0
+
+for i in KatieYN_q3:
+    if i == "yes":
+        yes_count_q3 += 1
+
+
+print("yes proportion question 3")
+print(yes_count_q3/len(KatieYN_q3))
+print("")
+
+
 q3IR = cohen_kappa_score(KatieYN_q3, MuskaanYN_q3)
 print("kappa for q3")
 print(q3IR)
