@@ -83,6 +83,7 @@ def summary_gen(code: int, name1: bool, name2: bool, list1: list, list2: list):
                 count += 1
         return count/len(list2)
     elif (name2 == True) and (name1 == True):
+        #take out overlapping in Katie's list ONLY AND in Muskaan's list ONLY
         count = 0
         for i in list1:
             if code in i:
