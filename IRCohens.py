@@ -122,6 +122,8 @@ for i in range(0, len(Katie_sorted_ids)):
             MuskaanYN_q1.append("yes")
             KatieYN_q1.append("yes")
 
+print("Overlap q1 ids")
+print(Katie_sorted_ids)
 
 
 #Q1 cohen's kappa RI

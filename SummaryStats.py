@@ -1,4 +1,5 @@
 import csv
+from os import remove
 import pandas as pd
 
 #Load in Katie dataframe and clean
@@ -69,6 +70,7 @@ for row in df2.itertuples():
         Muskaan_q1.append(inner_list)
 
 
+#Generates summary for only one
 def summary_gen(code: int, name1: bool, name2: bool, list1: list, list2: list):
     if (name1 == True) and (name2 == False):
         count = 0
@@ -82,19 +84,56 @@ def summary_gen(code: int, name1: bool, name2: bool, list1: list, list2: list):
             if code in i:
                 count += 1
         return count/len(list2)
-    elif (name2 == True) and (name1 == True):
-        #take out overlapping in Katie's list ONLY AND in Muskaan's list ONLY
-        count = 0
-        for i in list1:
-            if code in i:
-                count += 1
-        for i in list2:
-            if code in i:
-                count += 1
-        return count/(len(list1) + len(list2))
     else:
         return 0
 
+# generating combined summary stats
+
+# Q1
+combined_dict_mremove = {}
+combined_dict_kremove = {}
+
+
+# stats with katie's values for overlap
+for row in df2.itertuples():
+    id = row[1]
+    values = []
+    if (row[3] != 0 or row[4] != 0 or row[5] != 0):
+        if (row[2] != "__NA__") and (row[3] != 0):
+            values.append(row[3])
+        if (row[2] != "__NA__") and (row[4] != 0):
+            values.append(row[4])
+        if (row[2] != "__NA__") and (row[5] != 0):
+            values.append(row[5])
+        combined_dict_mremove[id] = values
+
+for row in df.itertuples():
+    id = row[1]
+    values = []
+    if (row[3] != 0 or row[4] != 0 or row[5] != 0):
+        if (row[2] != "__NA__") and (row[3] != 0):
+            values.append(row[3])
+        if (row[2] != "__NA__") and (row[4] != 0):
+            values.append(row[4])
+        if (row[2] != "__NA__") and (row[5] != 0):
+            values.append(row[5])
+        combined_dict_mremove[id] = values
+
+mremove_freq = {}
+
+for id in combined_dict_mremove:
+    values = combined_dict_mremove[id]
+    for value in values:
+        if (value not in mremove_freq.keys()):
+            mremove_freq[value] = 1
+        else:
+            mremove_freq[value] += 1
+
+print("Combined summary q1 Katie overlap")
+print(mremove_freq)
+
+print("Combined dataset with Muskaan overlap removed")
+print(combined_dict_mremove)
 
 print("freq of code 2 for Muskaan")
 print(summary_gen(2, False, True, Katie_q1, Muskaan_q1))
@@ -174,4 +213,4 @@ for row in df2.itertuples():
             inner_list.append(row[13])
         Muskaan_q3.append(inner_list)
 
-print(summary_gen(2, True, False, Katie_q3, Muskaan_q3))
+#print(summary_gen(2, True, False, Katie_q3, Muskaan_q3))
